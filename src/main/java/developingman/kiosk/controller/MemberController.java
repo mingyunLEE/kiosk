@@ -4,10 +4,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/v1/members", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/v1/members", produces = {MediaType.APPLICATION_JSON_VALUE}) //(1)
 public class MemberController {
     @PostMapping
-    public String postMember(@RequestParam("email") String email,
+    public String postMember(@RequestParam("email") String email, //(2),(3)
                              @RequestParam("name") String name,
                              @RequestParam("phone") String phone) {
         String response =
