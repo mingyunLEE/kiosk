@@ -1,9 +1,33 @@
 package developingman.kiosk.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-@RestController // (1)
-@RequestMapping("/v1/members") //(2)
+@RestController
+@RequestMapping(value = "/v1/members", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class MemberController {
+    @PostMapping
+    public String postMember(@RequestParam("email") String email,
+                             @RequestParam("name") String name,
+                             @RequestParam("phone") String phone) {
+        String response =
+                "{\"" +
+                        "email\":\""+email+"\"," +
+                        "\"name\":\""+name+"\",\"" +
+                        "phone\":\"" + phone+
+                        "\"}";
+        return response;
+    }
+    @GetMapping("/{member-id}")
+    public String getMember(@PathVariable("member-id")long memberId){
+        System.out.println("# memberId: " + memberId);
+
+        return null;
+    }
+
+    @GetMapping
+    public String getMembers(){
+        System.out.println("# get Members");
+        return null;
+    }
 }
